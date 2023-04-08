@@ -6,7 +6,7 @@ on:
 jobs:
 
   Create-Repository:
-    runs-on: homelab-origin
+    runs-on: actions-runner-3
 
     steps:
 
