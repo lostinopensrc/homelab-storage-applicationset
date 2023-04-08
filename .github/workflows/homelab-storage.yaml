@@ -21,7 +21,7 @@ jobs:
   Deploy-Top-Level:
     needs: [Create-Repository]
 
-    runs-on: homelab-origin
+    runs-on: actions-runner-3
 
     steps:
 
@@ -32,4 +32,3 @@ jobs:
       run: |
         export KUBECONFIG=$HOME/.kube/config
         kubectl apply -f top-level-app/TopLevelApplication.yaml
-
