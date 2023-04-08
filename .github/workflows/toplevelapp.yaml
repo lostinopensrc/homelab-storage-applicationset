@@ -1,0 +1,35 @@
+name: Deploy Homelab Storage App
+
+on:
+  workflow_dispatch:
+  
+jobs:
+
+  Create-Repository:
+    runs-on: homelab-origin
+
+    steps:
+
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Create Repository
+      run: |
+        export KUBECONFIG=$HOME/.kube/config
+        kubectl apply -f repository/homelab-storage-git-repo.yaml
+  
+  Deploy-Top-Level:
+    needs: [Create-Repository]
+
+    runs-on: homelab-origin
+
+    steps:
+
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Apply top level App
+      run: |
+        export KUBECONFIG=$HOME/.kube/config
+        kubectl apply -f top-level-app/TopLevelApplication.yaml
+
