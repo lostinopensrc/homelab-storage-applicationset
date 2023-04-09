@@ -6,7 +6,7 @@ on:
 jobs:
 
   Create-Repository:
-    runs-on: actions-runner-3
+    runs-on: ubuntu-latest
 
     steps:
 
@@ -21,7 +21,7 @@ jobs:
   Deploy-Top-Level:
     needs: [Create-Repository]
 
-    runs-on: actions-runner-3
+    runs-on: ubuntu-latest
 
     steps:
 
