@@ -1,0 +1,7 @@
+{
+    "tenantid": "local-path-provisioner",
+    "cluster": {
+      "namespace": "local-path-storage",
+      "address": "https://kubernetes.default.svc"
+    }
+  }
