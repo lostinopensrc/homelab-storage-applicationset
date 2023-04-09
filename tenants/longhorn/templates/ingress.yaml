@@ -22,22 +22,23 @@ spec:
   ingressClassName: {{ .Values.ingress.ingressClassName }}
   {{- end }}
   rules:
-  - http:
+  - host: {{ .Values.ingress.host }}
+    http:
       paths:
-      - path: {{ default "" .Values.ingress.path }}
-        {{- if (semverCompare ">=1.18-0" $.Capabilities.KubeVersion.GitVersion) }}
-        pathType: ImplementationSpecific
-        {{- end }}
-        backend:
-        {{- if semverCompare ">=1.19-0" $.Capabilities.KubeVersion.GitVersion }}
-          service:
-            name: longhorn-frontend
-            port:
-              number: 80
-        {{- else }}
-          serviceName: longhorn-frontend
-          servicePort: 80
-        {{- end }}
+        - path: {{ default "" .Values.ingress.path }}
+          {{- if (semverCompare ">=1.18-0" $.Capabilities.KubeVersion.GitVersion) }}
+          pathType: ImplementationSpecific
+          {{- end }}
+          backend:
+            {{- if semverCompare ">=1.19-0" $.Capabilities.KubeVersion.GitVersion }}
+            service:
+              name: longhorn-frontend
+              port:
+                number: 80
+            {{- else }}
+            serviceName: longhorn-frontend
+            servicePort: 80
+            {{- end }}
 {{- if .Values.ingress.tls }}
   tls:
   - hosts:

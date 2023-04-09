@@ -4,8 +4,5 @@ ingress:
 
 enablePSP: false
 
-persistence:
-  defaultClassReplicaCount: 1
-
 image:
   pullPolicy: Always
